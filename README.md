@@ -16,6 +16,6 @@ the above will patch /Applications/Emacs.app/Contents/MacOS/Emacs
 
 If for some reason you have it in another location, you can try:
 
-```patch < Emacs.patch and input the filename when prompted```
+```patch < Emacs.patch``` and input the filename when prompted
 OR
 ```patch <fileToPatch> Emacs.patch```
