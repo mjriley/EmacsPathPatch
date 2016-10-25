@@ -1,0 +1,19 @@
+--- /Applications/Emacs.app/Contents/MacOS/Emacs	2016-09-20 19:25:06.000000000 -0700
++++ /dev/null 2016-10-25 13:40:43.000000000 -0700
+@@ -54,6 +54,16 @@
+ ENV.replace({})
+ ENV.replace(eh)
+ 
++# Hack to read local paths
++# Augment the path with all paths contained in /etc/paths
++paths = ENV['PATH'].split(':')
++File.open("/etc/paths", "r") do |f| 
++    f.each_line do |line|
++        line = line.strip
++        ENV['PATH'] += ':' + line if not paths.include? line
++    end
++end
++
+ if emacs
+   # Emacs.app sticks Emacs.app/Contents/MacOS/{bin,libexec} on the end of the PATH when it starts, so if we
+   # stick our own architecture dependent paths on the end of the PATH then they will override Emacs's paths
